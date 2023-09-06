@@ -59,42 +59,4 @@
   <img src="https://img.shields.io/static/v1?message=Stackoverflow&logo=stackoverflow&label=&color=FE7A16&logoColor=white&labelColor=&style=for-the-badge" height="35" alt="stackoverflow logo"  />
 </div>
 
-###
 
-<br clear="both">
-
-<img src="https://raw.githubusercontent.com/houssain-hub/houssain-hub/output/snake.svg" alt="Snake animation" />
-name: Generate snake animation
-
-on:
-  schedule: # execute every 12 hours
-    - cron: "* */12 * * *"
-
-  workflow_dispatch:
-
-  push:
-    branches:
-    - master
-
-jobs:
-  generate:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: generate snake.svg
-        uses: Platane/snk/svg-only@v2
-        with:
-          github_user_name: ${{ github.repository_owner }}
-          outputs: dist/snake.svg
-
-
-      - name: push snake.svg to the output branch
-        uses: crazy-max/ghaction-github-pages@v2.6.0
-        with:
-          target_branch: output
-          build_dir: dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
-
-###
